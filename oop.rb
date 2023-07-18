@@ -44,20 +44,31 @@ puts vamp1.drink
 #  it should have a is_hungry attribute that is true by default
 #  it should have a eat method. If the dragon eats 4 times, it is no longer hungry
 class Dragon
+    attr_reader :name, :rider, :color, :is_hungry, :counter
     def initialize(name, rider, color)
         @name = name
         @rider = rider
         @color = color
         @is_hungry = true
+        @counter = 0
     end
-    def eat(quantity)
-        if quantity >= 4
-            puts @is_hungry = false
-        end
+    def eat
+        @counter += 1
+        @is_hungry = false if @counter >= 4
     end
 end
-puts drag1 = Dragon.new("Draco", "Harry", "black")
-drag1.eat(4)
+
+dave = Dragon.new("Dave", "Mark", "blue")
+
+puts dave.name == "Dave"
+puts dave.rider == "Mark"
+puts dave.color == "blue"
+
+dave.eat
+puts dave.is_hungry == true
+3.times {dave.eat}
+puts dave.is_hungry == false
+
         
 
 #  Write a Hobbit class
@@ -69,26 +80,26 @@ drag1.eat(4)
 #  it should have an is_old attribute that defaults to false. once a Hobbit is 101, it is old.
 #  it should have a has_ring attribute. If the Hobbit's name is "Frodo", true, if not, false.
 class Hobbit
+    attr_reader :name, :disposition, :age
     def initialize(name, disposition, age = 0)
         @name = name
         @disposition = disposition
         @age = age
-        @is_adult = false
-        @is_old = false
-        @has_ring = false
     end
+
     def celebrate_birthday
-        @age + 1
+        @age += 1
     end
-    def adult
-    if @age >= 33 
-        is_adult == true
+
+    def is_adult
+    @age >= 33 
     end
-    def old
+
+    def is_old
     if @age >= 101
         is_old == true
     end
-    def chosen
+    def is_chosen
     if @name == "Frodo"
         has_ring == true
     end
